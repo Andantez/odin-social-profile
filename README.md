@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# OdinBook
+
+The [final project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/final-project?ref=lnav) of the [OdinProject](https://www.theodinproject.com/courses/ruby-on-rails) Ruby on Rails curriculum.
