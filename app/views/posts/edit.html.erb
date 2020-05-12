@@ -1,0 +1,14 @@
+<h3>Edit your Post</h3>
+<ul>
+  <%= form_with(model: @post, local: true) do |f| %>
+    <% if @post.errors.any? %>
+      This form contains <%= pluralize(@post.errors.count, "error") %>
+      <% @post.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
+    <% end %>
+    <li><%= f.label :content, "Add your changes" %></li>
+    <li><%= f.text_area :content %></li>
+    <li><%= f.submit "Post" %></li>
+  <% end %>
+</ul>
