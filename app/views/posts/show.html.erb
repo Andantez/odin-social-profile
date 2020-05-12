@@ -1,2 +1,14 @@
 <h2>Your post</h2>
 <%= @post.content %>
+<%= form_with(model: [@post, Comment.new], local: true) do |f| %>
+  <%= f.label :content %>
+  <%= f.text_area :content, placeholder: 'Write a comment...', size: "35x3" %>
+  <%= f.submit "Comment" %>
+<% end %>
+  <% @post.comments.each do |comment| %>
+   <p> <%= comment.content %> -
+    Posted by: <%=comment.user.email %>| Posted <%= time_ago_in_words(comment.created_at) %> ago</p>
+    <% if current_user == comment.user %>
+    <%= link_to "delete" , comment, method: :delete, data: {confirm: "Are you sure?"}%>
+    <% end %>
+  <% end %>

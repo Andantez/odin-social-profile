@@ -7,8 +7,8 @@
         <%= msg %>
       <% end %>
     <% end %>
-    <li><%= f.label :content, "Whats on your head ?" %></li>
-    <li><%= f.text_area :content %></li>
+    <li><%= f.label :content, 'Create Post' %></li>
+    <li><%= f.text_area :content, placeholder: "What's on your mind, #{current_user.email} ?", size: "30x5" %></li>
     <li><%= f.submit "Post" %></li>
   <% end %>
 </ul>
