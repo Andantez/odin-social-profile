@@ -28,10 +28,10 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    if @post.update(post_params)
-      flash[:notice] = 'Post updated'
-      redirect_to @post
-    end
+    return unless @post.update(post_params)
+
+    flash[:notice] = 'Post updated'
+    redirect_to @post
   end
 
   def destroy
