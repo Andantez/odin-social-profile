@@ -1,3 +1,4 @@
+<%# TODO - format the code and split it in partials %>
 <h2>Your post</h2>
 <%= @post.content %>
 <%= form_with(model: [@post, Comment.new], local: true) do |f| %>
@@ -14,5 +15,15 @@
   <% end %>
 
   <%= link_to "Back", :back %>
- <%= icon('far', 'thumbs-up') %>
- <%= icon('fas', 'thumbs-up') %>
+
+<%#  TODO - move the like form from show page %>
+<% if liked?(@post) %>
+  <%= form_with(model: current_user.likes.find_by(post_id: @post.id), local: true, method: :delete) do |f| %>
+  <%=f.submit "dislike" %>
+<% end %>
+<% else %>
+<%= form_with(model: current_user.likes.new, local: true) do |f| %>
+  <%= hidden_field_tag :post_id, @post.id %>
+  <%= f.button'<i class="far fa-thumbs-up"></i>'.html_safe, class: "button"%>
+<% end %>
+<% end %>

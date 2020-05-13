@@ -6,4 +6,5 @@ class Like < ApplicationRecord
   belongs_to :liked_post, class_name: 'Post', foreign_key: :post_id
 
   # Validations
+  validates :liker, :liked_post, presence: true
 end

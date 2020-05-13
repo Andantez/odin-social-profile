@@ -9,4 +9,6 @@ class Post < ApplicationRecord
 
   # Validations
   validates :user, presence: true
+
+  
 end
