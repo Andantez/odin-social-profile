@@ -10,11 +10,11 @@
 
 <% if liked?(post) %>
   <%= form_with(model: current_user.likes.find_by(post_id: post.id), local: true, method: :delete) do |f| %>
-  <%=f.submit "dislike" %>
+  <%=f.button'<i class="fas fa-thumbs-up"></i>'.html_safe, class: "btn" %>
 <% end %>
 <% else %>
 <%= form_with(model: current_user.likes.new, local: true) do |f| %>
   <%= hidden_field_tag :post_id, post.id %>
-  <%= f.button'<i class="far fa-thumbs-up"></i>'.html_safe, class: "button"%>
+  <%= f.button'<i class="far fa-thumbs-up"></i>'.html_safe, class: "btn"%>
 <% end %>
 <% end %>
