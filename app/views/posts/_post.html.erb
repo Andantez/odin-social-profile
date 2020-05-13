@@ -1,4 +1,4 @@
-<li><%= link_to post.content, post %> by <%= post.user.email %></li>
+<li><%= link_to post.content, post %> by <%= post.user.username %></li>
 <small>Posted <%= time_ago_in_words(post.created_at)%> ago</small>
 <% if current_user == post.user%>
   <%= link_to "delete", post, method: :delete, data: {confirm: 'Are you sure?'} %>

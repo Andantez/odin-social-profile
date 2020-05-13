@@ -7,10 +7,12 @@
 <% end %>
   <% @post.comments.each do |comment| %>
    <p> <%= comment.content %> -
-    Posted by: <%=comment.user.email %>| Posted <%= time_ago_in_words(comment.created_at) %> ago</p>
+    Posted by: <%=comment.user.username %>| Posted <%= time_ago_in_words(comment.created_at) %> ago</p>
     <% if current_user == comment.user %>
     <%= link_to "delete" , comment, method: :delete, data: {confirm: "Are you sure?"}%>
     <% end %>
   <% end %>
 
   <%= link_to "Back", :back %>
+ <%= icon('far', 'thumbs-up') %>
+ <%= icon('fas', 'thumbs-up') %>
