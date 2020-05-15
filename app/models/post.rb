@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  default_scope -> { order created_at: :desc }
   # Relationships
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -9,6 +10,4 @@ class Post < ApplicationRecord
 
   # Validations
   validates :user, presence: true
-
-  
 end

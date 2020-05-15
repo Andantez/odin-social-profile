@@ -1,4 +1,5 @@
-<h3> <%= link_to post.user.username, '#' %></h3>
+<h3> <%= link_to post.user.username%></h3>
+<p><%= link_to "Add Friend"%></p>
 <small>Posted <%= time_ago_in_words(post.created_at)%> ago</small>
 <li><%= post.content %></li>
 <% if current_user == post.user%>
