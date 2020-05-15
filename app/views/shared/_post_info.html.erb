@@ -1,0 +1,7 @@
+<h3> <%= link_to post.user.username, '#' %></h3>
+<small>Posted <%= time_ago_in_words(post.created_at)%> ago</small>
+<li><%= post.content %></li>
+<% if current_user == post.user%>
+  <%= link_to "delete", post, method: :delete, data: {confirm: 'Are you sure?'} %>
+  <%= link_to "edit", edit_post_path(post) %>
+<% end %>

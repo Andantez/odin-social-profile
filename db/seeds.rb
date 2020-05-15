@@ -34,7 +34,7 @@ end
   user_id = User.all.ids.sample
   Post.create!(content: post, user_id: user_id)
 end
-25.times do |i|
+75.times do |i|
   puts "Creating comment ##{i}"
   post = Post.all.ids.sample
   user = User.all.ids.sample

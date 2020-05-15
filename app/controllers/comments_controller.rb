@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     comment.post = post
     if comment.save
       flash[:notice] = 'Comment posted successfully'
-      redirect_to post
+      redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
     end

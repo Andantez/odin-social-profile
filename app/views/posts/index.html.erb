@@ -1,6 +1,12 @@
 <%# TODO - format the code and split it in partials %>
-
 <ul>
-<%= render @posts %>
+  <% @posts.each do |post| %>
+    <%= render 'shared/post_info', post: post %>
+    <li><%= render 'comment_form', post: post %></li>
+    <% post.comments.each do |comment| %>
+      <%= render 'shared/post_comment', comment: comment %>
+    <% end %>
+    <%= render 'shared/like_form', post: post %>
+  <% end %>
 </ul>
 <%= link_to "Create new post", new_post_path %>

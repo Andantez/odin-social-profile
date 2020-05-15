@@ -1,29 +1,14 @@
 <%# TODO - format the code and split it in partials %>
 <h2>Your post</h2>
 <%= @post.content %>
-<%= form_with(model: [@post, Comment.new], local: true) do |f| %>
-  <%= f.label :content %>
-  <%= f.text_area :content, placeholder: 'Write a comment...', size: "35x3" %>
-  <%= f.submit "Comment" %>
+<%= render 'shared/comment_form' %>
+<% @post.comments.each do |comment| %>
+  <%= render 'shared/post_comment', comment: comment %>
 <% end %>
-  <% @post.comments.each do |comment| %>
-   <p> <%= comment.content %> -
-    Posted by: <%=comment.user.username %>| Posted <%= time_ago_in_words(comment.created_at) %> ago</p>
-    <% if current_user == comment.user %>
-    <%= link_to "delete" , comment, method: :delete, data: {confirm: "Are you sure?"}%>
-    <% end %>
-  <% end %>
-
-  <%= link_to "Back", :back %>
-
+<%= link_to "Back", :back %>
 <%#  TODO - move the like form from show page %>
 <% if liked?(@post) %>
-  <%= form_with(model: current_user.likes.find_by(post_id: @post.id), local: true, method: :delete) do |f| %>
-  <%=f.submit "dislike" %>
-<% end %>
+  <%= render 'shared/dislike', post: @post %>
 <% else %>
-<%= form_with(model: current_user.likes.new, local: true) do |f| %>
-  <%= hidden_field_tag :post_id, @post.id %>
-  <%= f.button'<i class="far fa-thumbs-up"></i>'.html_safe, class: "button"%>
-<% end %>
+  <%= render 'shared/like', post: @post %>
 <% end %>
