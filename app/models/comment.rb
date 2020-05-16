@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  # Validations
+  # Validations TODO more
   validates :user, :post, presence: true
   validates :content, presence: true
 end

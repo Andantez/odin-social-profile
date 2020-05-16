@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: 'posts#index'
   devise_for :users
   resources :users, only: :show
-  root to: 'posts#index'
   resources :posts do
     resources :comments, only: :create
   end

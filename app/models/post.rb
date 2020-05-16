@@ -8,6 +8,6 @@ class Post < ApplicationRecord
   has_many :likes, foreign_key: :post_id, dependent: :destroy
   has_many :likers, through: :likes, source: :liker, dependent: :destroy
 
-  # Validations
+  # Validations TODO more
   validates :user, presence: true
 end

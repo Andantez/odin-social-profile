@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   has_many :pending_friends, -> { where(friendships: { status: 'pending' }).order(created_at: :desc) },
            through: :friendships, source: :friend
-  # Validations
+  # Validations TODO more
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
 end

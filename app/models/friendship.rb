@@ -6,7 +6,7 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: :friend_id
 
-  # Validations
+  # Validations TODO more
   validates :user_id, :friend_id, presence: true
 
   # Return true if the  users are friends
