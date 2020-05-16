@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Takes care(create, destroy) of the relationship between two users
 class Friendship < ApplicationRecord
   # Relationships
   belongs_to :user
@@ -9,19 +10,18 @@ class Friendship < ApplicationRecord
   validates :user_id, :friend_id, presence: true
 
   # Return true if the  users are friends
-  def self.exist?(user, friend)
-    !find_by(user: user, friend: friend).nil?
+  def self.exists?(user, friend)
+    !find_by_user_id_and_friend_id(user, friend).nil?
   end
 
   # Record a pending friend request.
-
   def self.request(user, friend)
     unless (user == friend) || Friendship.exists?(user, friend)
 
       transaction do
-        create(user: user, friend: friend, status: 'pending')
+        create!(user: user, friend: friend, status: 'pending')
 
-        create(user: friend, friend: user, status: 'requested')
+        create!(user: friend, friend: user, status: 'requested')
       end
 
     end
@@ -39,9 +39,8 @@ class Friendship < ApplicationRecord
   # Delete a friendship request or cancel it
   def self.reject(user, friend)
     transaction do
-      destroy(find_by(user: user, friend: friend))
-
-      destroy(find_by(user: friend, friend: user))
+      destroy_by(friend_id: friend)
+      destroy_by(friend_id: user)
     end
   end
 

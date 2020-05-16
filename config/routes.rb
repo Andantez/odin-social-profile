@@ -2,11 +2,18 @@
 
 Rails.application.routes.draw do
   devise_for :users
+  resources :users, only: :show
   root to: 'posts#index'
   resources :posts do
     resources :comments, only: :create
   end
   resources :comments, only: :destroy
   resources :likes, only: %i[create destroy]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :friendships, only: %i[create destroy] do
+    member do
+      patch :accept
+      patch :decline
+      patch :cancel
+    end
+  end
 end

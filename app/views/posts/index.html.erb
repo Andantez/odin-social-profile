@@ -1,4 +1,5 @@
 <%# TODO - format the code and split it in partials %>
+<%= link_to 'Profile', current_user %>
 <ul>
   <% @posts.each do |post| %>
     <%= render 'shared/post_info', post: post %>
