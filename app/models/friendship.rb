@@ -11,7 +11,7 @@ class Friendship < ApplicationRecord
 
   # Return true if the  users are friends
   def self.exists?(user, friend)
-    !find_by_user_id_and_friend_id(user, friend).nil?
+    !find_by(user: user, friend: friend).nil?
   end
 
   # Record a pending friend request.
@@ -20,8 +20,8 @@ class Friendship < ApplicationRecord
 
       transaction do
         create!(user: user, friend: friend, status: 'pending')
-
         create!(user: friend, friend: user, status: 'requested')
+        
       end
 
     end

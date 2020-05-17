@@ -27,4 +27,8 @@ class User < ApplicationRecord
   # Validations TODO more
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
+
+  def friends?(other_user)
+    friendships.find_by(friend_id: other_user)
+  end
 end

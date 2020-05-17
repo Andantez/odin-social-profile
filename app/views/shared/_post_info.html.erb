@@ -1,7 +1,9 @@
-<h3> <%= link_to post.user.username%></h3>
-<%= form_with(model: current_user.friendships.new, local: true) do |f| %>
- <%= hidden_field_tag :user, post.user.id %>
-  <%= f.submit "Add Friend" %>
+<h3> <%= link_to post.user.username, user_path(post.user)%></h3>
+<% unless (current_user == post.user) || current_user.friends?(post.user)  %>
+  <%= form_with(model: current_user.friendships.new, local: true) do |f| %>
+    <%= hidden_field_tag :user, post.user.id %>
+    <%= f.submit "Add Friend" %>
+  <% end %>
 <% end %>
 <small>Posted <%= time_ago_in_words(post.created_at)%> ago</small>
 <li><%= post.content %></li>

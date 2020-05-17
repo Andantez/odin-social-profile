@@ -1,27 +1,14 @@
 <%# TODO - Implement styling and move some of the code in partials %>
-
-<h3>Friends</h3>
-<% @user.friends.each do |friend|  %>
-  <%= friend.username %>
-  <%= link_to friendship_path(friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'delete' do %>
-    <%= button_tag "Remove from friends", class: "btn btn-primary" %>
-  <% end %>
+<% @user ||= current_user %>
+<ol>
+<h3><%= @user.username %></h3>
+<% @user.posts.each do |post| %>
+  <li>
+  <%= post.content %>
+    <% post.comments.each do |comment| %><br/>
+      <%= comment.content %>
+    <% end %><br/>
+    Posted <%= time_ago_in_words(post.created_at) %> ago
+  </li>
 <% end %>
-<h3>Pending invitations</h3>
-<% @user.pending_friends.each do |friend| %>
-  <p>Invitations sent to: <%= friend.username %>
-    <%= link_to cancel_friendship_path(pending_friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch' do %>
-      <%= button_tag "Cancel", class: 'btn btn-primary' %>
-    <% end %>
-  </p>
-<% end %>
-<h3>Requested invitations</h3>
-<% @user.requested_friends.each do |friend| %>
-  <p>Invitation send by: <%= friend.username %>
-    <%= link_to accept_friendship_path(request_by_id: friend.id), method: 'patch' do  %>
-      <%= button_tag "Accept", class: 'btn btn-primary' %>
-    <% end %>
-    <%= link_to decline_friendship_path(request_by_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch' do %>
-      <%= button_tag "Decline", class: 'btn btn-primary' %></p>
-  <% end %>
-<% end %>
+</ol>

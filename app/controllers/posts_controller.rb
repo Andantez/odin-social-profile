@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_params, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:user, comments: [:user])
   end
 
   def show; end

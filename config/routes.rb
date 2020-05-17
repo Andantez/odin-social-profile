@@ -10,10 +10,11 @@ Rails.application.routes.draw do
   resources :comments, only: :destroy
   resources :likes, only: %i[create destroy]
   resources :friendships, only: %i[create destroy] do
-    member do
+    collection do
       patch :accept
       patch :decline
       patch :cancel
     end
   end
+  resources :friends, only: :index, controller: 'friendships'
 end

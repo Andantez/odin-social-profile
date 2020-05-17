@@ -3,6 +3,10 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @user = current_user
+  end
+
   # find the user(current user) and find the friend(displayed user)
   def create
     Friendship.request(current_user, User.find(params[:user]))
@@ -16,7 +20,7 @@ class FriendshipsController < ApplicationController
     if @user.requested_friends.include?(@friend)
       Friendship.accept(current_user, User.find(params[:request_by_id]))
       flash[:notice] = "Friendship with #{@friend.username} accepted!"
-      redirect_to @user
+      redirect_to friends_path
     else
       flash[:alert] = "No friend request from #{@friend.username}."
     end
@@ -28,7 +32,7 @@ class FriendshipsController < ApplicationController
     if @user.requested_friends.include?(@friend)
       Friendship.reject(@user, @friend)
       flash[:notice] = "Friendship with #{@friend.username} declined"
-      redirect_to @user
+      redirect_to friends_path
     else
       flash[:alert] = "No friend request from #{@friend.username}."
 
@@ -41,7 +45,7 @@ class FriendshipsController < ApplicationController
     if @user.pending_friends.include?(@friend)
       Friendship.reject(@user, @friend)
       flash[:notice] = "Friendship with #{@friend.username} canceled"
-      redirect_to @user
+      redirect_to friends_path
     else
       flash[:alert] = "No friend request with #{@friend.username}."
 
@@ -49,12 +53,13 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
+    # debugger
     @friend = User.find(params[:friend_id])
     @user = current_user
     if @user.friends.include?(@friend)
       Friendship.reject(@user, @friend)
       flash[:notice] = "#{@friend.username} was removed from your friendlist"
-      redirect_to @user
+      redirect_to friends_path
     else
       flash[:alert] = "#{@friend.username} is not in your friendlist"
     end
