@@ -77,7 +77,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  
+
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
   # middleware. The `delay` is used to determine how long to wait after a write
@@ -99,13 +99,14 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   # Setup the mailer config
-  config.action_mailer.default_url_options = { host: 'http://https://rails-social-profile.herokuapp.com/' }
+  host = 'rails-social-profile.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
-    domain: 'rails-social-profile.herokuapp.com',
+    domain: 'heroku.com',
     address: 'smtp.sendgrid.net',
     port: 587,
     authentication: :plain,
