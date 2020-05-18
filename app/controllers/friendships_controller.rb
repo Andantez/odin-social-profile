@@ -53,7 +53,6 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    # debugger
     @friend = User.find(params[:friend_id])
     @user = current_user
     if @user.friends.include?(@friend)

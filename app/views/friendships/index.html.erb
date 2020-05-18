@@ -9,7 +9,7 @@
 <h3>Pending invitations</h3>
 <% @user.pending_friends.each do |friend| %>
   <p>Invitations sent to: <%= friend.username %>
-    <%= link_to cancel_friendships_path(pending_friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch' do %>
+    <%= link_to cancel_friendships_path(pending_friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
       <%= button_tag "Cancel", class: 'btn btn-primary' %>
     <% end %>
   </p>
@@ -17,10 +17,10 @@
 <h3>Requested invitations</h3>
 <% @user.requested_friends.each do |friend| %>
   <p>Invitation send by: <%= friend.username %>
-    <%= link_to accept_friendships_path(request_by_id: friend.id), method: 'patch' do  %>
+    <%= link_to accept_friendships_path(request_by_id: friend.id), method: 'patch', remote: true do  %>
       <%= button_tag "Accept", class: 'btn btn-primary' %>
     <% end %>
-    <%= link_to decline_friendships_path(request_by_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch' do %>
+    <%= link_to decline_friendships_path(request_by_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
       <%= button_tag "Decline", class: 'btn btn-primary' %></p>
   <% end %>
 <% end %>

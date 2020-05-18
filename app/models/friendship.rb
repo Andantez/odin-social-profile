@@ -21,7 +21,6 @@ class Friendship < ApplicationRecord
       transaction do
         create!(user: user, friend: friend, status: 'pending')
         create!(user: friend, friend: user, status: 'requested')
-        
       end
 
     end
