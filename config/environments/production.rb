@@ -90,7 +90,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: 'http://TODO_PUT_YOUR_DOMAIN_HERE' }
+  config.action_mailer.default_url_options = { host: 'http://https://rails-social-profile.herokuapp.com/' }
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
