@@ -2,7 +2,7 @@
 <ul>
   <% @posts.each do |post| %>
     <%= render 'shared/post_info', post: post %>
-    <li><%= render 'comment_form', post: post %></li>
+    <li><%= render partial: 'comment_form', locals: {post: post, comment: @comment} %></li>
     <% post.comments.each do |comment| %>
       <%= render 'shared/post_comment', comment: comment %>
     <% end %>

@@ -7,10 +7,12 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = current_user.comments.new(comment_params)
     comment.post = post
+  
     if comment.save
       flash[:notice] = 'Comment posted successfully'
       redirect_back(fallback_location: root_path)
     else
+      flash[:alert] = "Please write a comment, upload image or both"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -25,6 +27,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :image)
   end
 end

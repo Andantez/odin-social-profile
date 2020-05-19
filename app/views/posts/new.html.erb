@@ -10,6 +10,7 @@
     <li><%= f.label :content, 'Create Post' %></li>
     <li><%= f.text_area :content, placeholder: "What's on your mind, #{current_user.email} ?", size: "30x5" %></li>
     <li><%= f.submit "Post" %></li>
+    <li><%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: "validate_image" %></li>
   <% end %>
 </ul>
 <%= link_to "Back", :back %>

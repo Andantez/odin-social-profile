@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   before_action :set_params, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.includes(:user, comments: [:user])
+    @posts = Post.includes(:user, comments: %i[user])
+    @comment = Comment.new
   end
 
   def show; end
@@ -47,6 +48,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content, :image)
   end
 end

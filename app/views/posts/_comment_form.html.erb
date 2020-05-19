@@ -1,4 +1,11 @@
-<%= form_with(model: [post, Comment.new], local: true) do |f| %>
+<%= form_with(model: [post, comment], local: true) do |f| %>
+  <% if comment.errors.any? %>
+   <% comment.errors.full_messages.each do |msg| %>
+   <%= msg %>
+   <% end %>
+    
+  <% end %>
   <%= f.text_area :content, placeholder: 'Write a comment...', size: "35x2" %>
   <%= f.submit "Comment" %>
+   <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image' %>
 <% end %>
