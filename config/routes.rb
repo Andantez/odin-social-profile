@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'posts#index'
+  # root to: 'posts#index'
+  authenticated :user do
+    root to: 'posts#index', as: :authenticated_root
+  end
+  root to: redirect('/users/sign_in')
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: :show
   resources :posts do
