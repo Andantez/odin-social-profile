@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root to: 'posts#index'
-  devise_for :users, controllers: { registrations: 'welcome_registrations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: :show
   resources :posts do
     resources :comments, only: :create
