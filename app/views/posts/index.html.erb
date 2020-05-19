@@ -1,4 +1,6 @@
 <%# TODO - format the code and split it in partials %>
+<%# avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
+<%#= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
 <ul>
   <% @posts.each do |post| %>
     <%= render 'shared/post_info', post: post %>
@@ -10,3 +12,5 @@
   <% end %>
 </ul>
 <%= link_to "Create new post", new_post_path %>
+
+
