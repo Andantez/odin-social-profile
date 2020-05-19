@@ -5,7 +5,9 @@ class PostsController < ApplicationController
   before_action :set_params, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.includes(:user, comments: %i[user])
+    @posts = Post.includes(image_attachment: [:blob],
+                           user: %i[posts comments friendships],
+                           comments: [:user, image_attachment: [:blob]])
     @comment = Comment.new
   end
 
