@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light navigation">
+  <%= link_to root_path, class: "navbar-brand " do %>
+    <span class="header">Social Profile</span>
+    <%= image_tag 'logo', size: '35x35' %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <%= link_to current_user, class: "nav-link navigation-links" do %>
+          <%# if user_signed_in? %>
+          <% if !current_user.facebook_picture_url.nil? || current_user.avatar.attached? %>
+            <% avatar_url = current_user.facebook_picture_url || current_user.avatar %>
+            <span class="nav-link avatar-username">
+              <%= image_tag avatar_url, size: "40x40", class: "navbar-img"%>
+              <span class="username"> <%= current_user.username %></span>
+            </span>
+          <% else %>
+            <span class="username nav-link"> <%= current_user.username %></span>
+          <% end %>
+          <%# end %>
+          <span class="sr-only">(current)</span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_post_path, class: "nav-link navigation-links tag-tooltip", data: { toggle: 'tooltip', title: "Create", placement: 'bottom', trigger: 'hover'} do %>
+          <span class="fa-stack fa-1x plus icon-fs">
+            <i class="fas fa-circle fa-stack-2x plus"></i>
+            <i class="fas fa-plus fa-stack-1x fa-inverse plus-bg"></i>
+          </span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to friends_path, class: "nav-link navigation-links tag-tooltip", data: { toggle: 'tooltip', title: "Friends", placement: 'bottom', trigger: 'hover'}  do %>
+          <span class="fa-stack fa-1x plus icon-fs">
+            <i class="fas fa-circle fa-stack-2x friends"></i>
+            <i class="fas fa-user-friends fa-stack-1x fa-inverse friends-bg"></i>
+          </span>
+        <% end %>
+      </li>
+      <li class="nav-item dropdown" data-toggle="tooltip" data-title="Account" data-placement="bottom" data-trigger="hover">
+        <a class="nav-link navigation-links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="fa-stack fa-1x pointer icon-fs ">
+            <i class="fas fa-circle fa-stack-2x pointer"></i>
+            <i class="fas fa-caret-down fa-stack-1x fa-inverse caret"></i>
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right text-center dropdown-radius" aria-labelledby="navbarDropdownMenuLink">
+          <div class=dropdown-info>
+            <div class="dropdown-img">
+              <%= link_to current_user, class: "nav-link" do %>
+                <% if user_signed_in? %>
+                  <% if !current_user.facebook_picture_url.nil? || current_user.avatar.attached? %>
+                    <% avatar_url = current_user.facebook_picture_url || current_user.avatar %>
+                    <%= image_tag avatar_url, class: "avatar dropdown-toggle",size: "40x40"%>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+            <span > <%= link_to current_user.username, current_user, class: "nav-link dropdown-username" %></span>
+          </div>
+          <div class="sb-cont">
+            <div class="shorter-border"></div>
+          </div>
+          <%= link_to "Edit", edit_user_registration_path, class: "dropdown-item text-font"%>
+          <%= link_to "Log  Out", destroy_user_session_path, method: 'delete', class: "dropdown-item text-font" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
