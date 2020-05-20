@@ -1,5 +1,5 @@
 <p> <%= comment.content %> <%= image_tag comment.image.variant(resize_to_limit: [200, 200], loader: { page: nil }) if comment.image.attached? %> -
   Posted by: <%=comment.user.username %>| Posted <%= time_ago_in_words(comment.created_at) %> ago</p>
 <% if current_user == comment.user %>
-  <%= link_to "delete" , comment, method: :delete, data: {confirm: "Are you sure?"}%>
+  <%= link_to "delete" , comment, method: :delete, data: {confirm: "Are you sure?"}, remote: true%>
 <% end %>

@@ -1,7 +1,9 @@
 <%# TODO - format the code and split it in partials %>
 <h2>Your post</h2>
 <%= @post.content %>
+<% if @post.image.attached? %>
 <%= image_tag @post.image.variant(resize_to_limit: [400, 400])%>
+<% end %>
 <%= render 'shared/comment_form' %>
 <% @post.comments.each do |comment| %>
   <%= render 'shared/post_comment', comment: comment %>
@@ -13,12 +15,3 @@
 <% else %>
   <%= render 'shared/like', post: @post %>
 <% end %>
-<script type="text/javascript">
-  $("#micropost_image").bind("change", function() {
-    const size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert("Maximum file size is 5MB. Please choose a smaller file.");
-      $("#micropost_image").val("");
-    }
-  });
-</script>

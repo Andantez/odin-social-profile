@@ -33,8 +33,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
-  
+  });
 });
 
 
@@ -46,3 +45,6 @@ document.addEventListener('turbolinks:load', () => {
       $("#validate_image").val("");
     }
   });
+
+
+  

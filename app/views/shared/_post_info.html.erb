@@ -8,6 +8,6 @@
 <small>Posted <%= time_ago_in_words(post.created_at)%> ago</small>
 <li><%= post.content %> <%= image_tag post.image.variant(resize_to_limit: [500, 500]) if post.image.attached? %></li>
 <% if current_user == post.user%>
-  <%= link_to "delete", post, method: :delete, data: {confirm: 'Are you sure?'} %>
+  <%= link_to "delete", post, method: :delete, data: {confirm: 'Are you sure?'}, remote: true %>
   <%= link_to "edit", edit_post_path(post) %>
 <% end %>

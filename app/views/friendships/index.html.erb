@@ -2,7 +2,7 @@
 <h3>Friends</h3>
 <% @user.friends.each do |friend|  %>
   <%= friend.username %>
-  <%= link_to friendship_path(@user.friendships.find_by(friend_id:friend).id,friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'delete' do %>
+  <%= link_to friendship_path(@user.friendships.find_by(friend_id:friend).id,friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'delete', remote: true do %>
     <%= button_tag "Remove from friends", class: "btn btn-primary" %>
   <% end %>
 <% end %>
