@@ -1,4 +1,4 @@
-<%= form_with(model: current_user.likes.new, local: true) do |f| %>
+<%= form_with(model: current_user.likes.new) do |f| %>
     <%= hidden_field_tag :post_id, @post.id %>
-    <%= f.button'<i class="far fa-thumbs-up"></i>'.html_safe, class: "button"%>
+    <%= f.button'<i class="far fa-thumbs-up"></i>'.html_safe, class: "btn"%>
   <% end %>

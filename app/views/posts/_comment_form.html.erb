@@ -3,7 +3,6 @@
    <% comment.errors.full_messages.each do |msg| %>
    <%= msg %>
    <% end %>
-    
   <% end %>
   <%= f.text_area :content, placeholder: 'Write a comment...', size: "35x2" %>
   <%= f.submit "Comment" %>

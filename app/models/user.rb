@@ -56,7 +56,6 @@ class User < ApplicationRecord
       user.username = auth.info.name.split.first
       user.save
     end
-
     user
   end
 end

@@ -8,18 +8,9 @@
       <% end %>
     <% end %>
     <li><%= f.label :content, 'Create Post' %></li>
-    <li><%= f.text_area :content, placeholder: "What's on your mind, #{current_user.email} ?", size: "30x5" %></li>
+    <li><%= f.text_area :content, placeholder: "What's on your mind, #{current_user.username} ?", size: "30x5" %></li>
     <li><%= f.submit "Post" %></li>
     <li><%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: "validate_image" %></li>
   <% end %>
 </ul>
 <%= link_to "Back", :back %>
-<script type="text/javascript">
-  $("#micropost_image").bind("change", function() {
-    const size_in_megabytes = this.files[0].size/1024/1024;
-    if (size_in_megabytes > 5) {
-      alert("Maximum file size is 5MB. Please choose a smaller file.");
-      $("#micropost_image").val("");
-    }
-  });
-</script>

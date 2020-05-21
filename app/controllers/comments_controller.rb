@@ -7,13 +7,13 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = current_user.comments.new(comment_params)
     comment.post = post
-  
+
     if comment.save
       flash[:notice] = 'Comment posted successfully'
-      redirect_back(fallback_location: root_path)
+      redirect_to root_url
     else
-      flash[:alert] = "Please write a comment, upload image or both"
-      redirect_back(fallback_location: root_path)
+      flash[:alert] = 'Please write a comment, upload image or both'
+      redirect_to root_path
     end
   end
 
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:alert] = 'Comment deleted!'
-    redirect_back(fallback_location: root_url)
+    redirect_to root_path
   end
 
   private
