@@ -14,7 +14,7 @@
           <% if !current_user.facebook_picture_url.nil? || current_user.avatar.attached? %>
             <% avatar_url = current_user.facebook_picture_url || current_user.avatar %>
             <span class="nav-link avatar-username">
-              <%= image_tag avatar_url, size: "40x40", class: "navbar-img"%>
+              <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
               <span class="username"> <%= current_user.username %></span>
             </span>
           <% else %>

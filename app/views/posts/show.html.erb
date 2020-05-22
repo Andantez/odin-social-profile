@@ -2,7 +2,7 @@
 <h2>Your post</h2>
 <%= @post.content %>
 <% if @post.image.attached? %>
-<%= image_tag @post.image.variant(resize_to_limit: [400, 400])%>
+<%= cl_image_tag @post.image.key, height: 500, width: 500, crop: :fit%>
 <% end %>
 <%= render 'shared/comment_form' %>
 <% @post.comments.each do |comment| %>

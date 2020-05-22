@@ -34,9 +34,9 @@ gem 'devise'
 gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
-
 gem 'autoprefixer-rails'
+gem 'bootsnap', '>= 1.4.2', require: false
+gem 'cloudinary', '~> 1.14'
 gem 'font-awesome-sass'
 gem 'simple_form'
 

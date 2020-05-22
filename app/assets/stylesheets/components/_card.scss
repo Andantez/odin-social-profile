@@ -1,0 +1,39 @@
+.card-title {
+
+  a{
+    font-size: 1.5rem;
+    color: $main-black;
+    font-family: $body-font;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+   
+}
+
+}
+
+.index-card {
+  position: relative;
+
+ 
+}
+.small-info {
+  position: absolute;
+  top: 30px;
+  left: 52px;
+
+}
+
+.index-post-dropdown {
+  position: absolute;
+  right: 2px;
+  top: 0;
+}
+
+.index-dropdown-info {
+
+}
+
+
+.index-img {
+  visibility: hidden;
+}
