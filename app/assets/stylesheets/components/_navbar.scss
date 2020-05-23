@@ -102,6 +102,7 @@
   }
 }
 .avatar-username {
+  padding-top: 3px;
   // padding: 0px;
  &:hover {
    background-color: $light-gray;
@@ -134,6 +135,8 @@
 .navigation {
   background-color: $main-white !important;
   padding-bottom: 0px;
+  border-bottom: 1px solid $dark-gray;
+  box-shadow: 1px 1px 1px $dark-gray;
 }
 
 .header {

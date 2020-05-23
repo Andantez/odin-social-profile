@@ -3,19 +3,17 @@
 <%#= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
 <main class="container">
   <div class="row justify-content-md-center">
-    <div class="col-lg-8 col-sm-6 col-md-6 border">
-      <ul class="list-unstyled">
-      
-        <% @posts.each do |post| %>
-        
+    <div class="col-lg-8 col-sm-6 col-md-6">
+      <% @posts.each do |post| %>
+        <ul class="list-unstyled main-ul">
           <%= render 'shared/post_info', post: post %>
-          <li><%= render partial: 'comment_form', locals: {post: post, comment: @comment} %></li>
+          <li><%= render 'shared/like_form', post: post %></li>
           <% post.comments.each do |comment| %>
             <%= render 'shared/post_comment', comment: comment %>
           <% end %>
-          <%= render 'shared/like_form', post: post %>
-        <% end %>
-      </ul>
+          <%= render partial: 'comment_form', locals: {post: post, comment: @comment} %>
+        </ul>
+      <% end %>
       <%= link_to "Create new post", new_post_path %></div>
   </div>
 </main>

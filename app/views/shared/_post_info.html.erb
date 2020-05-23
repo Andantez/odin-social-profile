@@ -13,28 +13,32 @@
   </div>
   <% if current_user == post.user%>
     <div class="index-post-dropdown">
-      <li class="nav-item dropdown" data-toggle="tooltip" data-title="Account" data-placement="bottom" data-trigger="hover">
+      <li class="nav-item dropdown">
         <a class="nav-link navigation-links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="fa-stack fa-1x pointer icon-fs ">
-            <i class="fas fa-circle fa-stack-2x pointer"></i>
-            <i class="fas fa-ellipsis-h fa-stack-1x fa-inverse caret"></i>
+          <span class="fa-stack fa-1x more-first-icon">
+            <i class="fas fa-circle fa-stack-2x more-second-icon"></i>
+            <i class="fas fa-ellipsis-h fa-stack-1x fa-inverse more-third-icon "></i>
           </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right text-center dropdown-radius" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu dropdown-menu-right text-center dropdown-radius card-dropdown" aria-labelledby="navbarDropdownMenuLink">
           <div class="index-dropdown-info">
-            <span ><%= link_to "delete", post, method: :delete, data: {confirm: 'Are you sure?'}, remote: true %> </span>
+            <span ><%= link_to "Delete", post, method: :delete, remote: true %> </span>
           </div>
-          <div class="sb-cont">
-            <div class="shorter-border"></div>
-          </div>
-          <div class="index-dropdown-info"><span><%= link_to "edit", edit_post_path(post) %></span></div>
+          <div class="index-dropdown-info"><span><%= link_to "Edit", edit_post_path(post) %></span></div>
         </div>
       </li>
     </div>
   <% end %>
 </div>
+<% if post.content.empty?  %>
+  <li class="text-center"> <%= cl_image_tag post.image.key, height: 500, crop: :fit, class: "card-image" if post.image.attached? %></li>
+<% elsif !post.image.attached?%>
+  <li class="content"><%= post.content %></li>
+<% else %>
+  <li class="content"><%= post.content %></li>
+  <li class="text-center"> <%= cl_image_tag post.image.key, height: 500, crop: :fit, class: "card-image" if post.image.attached? %></li>
+<% end %>
 <%# unless (current_user == post.user) || current_user.friends?(post.user)  %>
-<li><%= post.content %> <%= cl_image_tag post.image.key, height: 500, width: 500, crop: :fit if post.image.attached? %></li>
 <%#= form_with(model: current_user.friendships.new, local: true) do |f| %>
   <%#= hidden_field_tag :user, post.user.id %>
   <%#= f.submit "Add Friend" %>
