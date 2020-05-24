@@ -22,7 +22,7 @@ class Post < ApplicationRecord
 
   def post_or_image
     if content.blank? && image.blank?
-      errors[:alert] << 'Comment, upload Image or Both'
+      errors.add(:please, 'Write something, upload an image or both')
     end
   end
 end

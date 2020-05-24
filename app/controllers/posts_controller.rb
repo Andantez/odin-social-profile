@@ -5,9 +5,11 @@ class PostsController < ApplicationController
   before_action :set_params, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.includes(image_attachment: [:blob],
-                           user: %i[posts comments friendships],
-                           comments: [:user, image_attachment: [:blob]])
+    # Get the friend ids of the current_user and display the friends posts
+    ids = current_user.friends.pluck(:id) << current_user.id
+    @posts = Post.where(user_id: ids).includes(image_attachment: [:blob],
+                                               user: %i[posts comments friendships],
+                                               comments: [:user, image_attachment: [:blob]])
     @comment = Comment.new
   end
 

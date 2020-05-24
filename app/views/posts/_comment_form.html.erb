@@ -1,12 +1,20 @@
 <li>
   <%= form_with(model: [post, comment]) do |f| %>
     <% if comment.errors.any? %>
-     <% comment.errors.full_messages.each do |msg| %>
-     <%= msg %>
-     <% end %>
+      <% comment.errors.full_messages.each do |msg| %>
+        <%= msg %>
+      <% end %>
     <% end %>
-    <%= f.text_area :content, placeholder: 'Write a comment...', row: 1, style: 'width:100%;'%>
-    <%= f.submit "Comment", id:"testing" %>
-     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image' %>
+    <div class="upload-container"> <%= f.text_area :content, placeholder: 'Write a comment...', style: 'width:100%;', size:"1x1", class: "text-area"%>
+      <%= f.submit "Comment", class: "submit" %>
+      <div>
+        <label>
+          <i class="far fa-image tooltip-top upload-icon" data-toggle="tooltip" data-title="Upload a photo" data-placement="top" data-trigger="hover" data-original-title title ></i>
+          <span style="display:none;">
+            <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image'%>
+          </span>
+        </label>
+      </div>
+    </div>
   <% end %>
 </li>

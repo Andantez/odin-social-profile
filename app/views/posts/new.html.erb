@@ -1,5 +1,8 @@
-<h3>Create Post</h3>
-<ul>
+<main class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-8 col-sm-6 col-md-6">
+<h3 class="text-center mt-5">Create Post</h3>
+<ul class="list-unstyled main-ul">
   <%= form_with(model: @post, local: true) do |f| %>
     <% if @post.errors.any? %>
       This form contains <%= pluralize(@post.errors.count, "error") %>
@@ -7,10 +10,20 @@
         <%= msg %>
       <% end %>
     <% end %>
-    <li><%= f.label :content, 'Create Post' %></li>
+   
     <li><%= f.text_area :content, placeholder: "What's on your mind, #{current_user.username} ?", size: "30x5" %></li>
     <li><%= f.submit "Post" %></li>
-    <li><%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: "validate_image" %></li>
+    <li> <div>
+        <label>Add to your post
+          <i class="far fa-image tooltip-top" data-toggle="tooltip" data-title="Upload a photo" data-placement="top" data-trigger="hover" data-original-title title ></i>
+          <span style="display:none;">
+            <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image'%>
+          </span>
+        </label>
+      </div></li>
   <% end %>
 </ul>
 <%= link_to "Back", :back %>
+   </div>
+  </div>
+</main>

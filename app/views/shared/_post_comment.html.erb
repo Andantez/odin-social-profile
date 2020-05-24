@@ -8,12 +8,13 @@
       <%= comment.content %>  </li>
       <div class="delete-comment">
   <% if current_user == comment.user %>
-    <%= link_to comment, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "comment-delete",data: { toggle: 'tooltip', title: "Remove", placement: 'top', trigger: 'hover'} do%>
+    <%= link_to comment, method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: "comment-delete",data: { toggle: 'tooltip', title: "Remove", placement: 'right', trigger: 'hover'} do%>
       <i class="fas fa-times"></i>
     <% end %>
-  </div>
 <% end %>
   </div>
+  </div>
   <%= cl_image_tag comment.image.key, height: 200, crop: :fit, class: "comment-img" if comment.image.attached? %>
-  <div class="times-ago"><small><%= time_ago_in_words(comment.created_at) %></small></div>
+  </div>
+  <div class="times-ago"><small><%= time_ago_in_words(comment.created_at) %></small>
 </div>

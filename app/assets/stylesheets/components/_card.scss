@@ -68,7 +68,6 @@
   min-width: 10em;
 }
 
-
 .card-image {
   max-width: 100%;
   margin-top: 10px;
@@ -83,28 +82,26 @@
   letter-spacing: 0.3px;
 }
 
-.like, .dislike  {
-  font-size: 1.5rem;
-  margin: 2px;
+.like,
+.dislike {
+  font-size: 1.3rem;
+  margin: 20px 5px;
 }
 
 .dislike {
   color: $main-blue;
-   &:hover {
-     background-color: $light-gray;
-     border-radius: 10px;
-     color: $main-blue;
-   }
+  &:hover {
+    background-color: $light-gray;
+    border-radius: 10px;
+    color: $main-blue;
+  }
 }
 
 .comment-info {
-  // background: $light-gray;
-  // border-radius: 10px;
   padding: 5px 10px;
   strong {
     font-family: $headers-font;
   }
-  // max-width: fit-content;
 }
 
 .comment-container {
@@ -119,14 +116,11 @@
   border-top-right-radius: 5px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  // margin: 10px;
   margin-top: 5px;
 }
 
 .comment-avatar {
   border-radius: 50%;
-  // margin-top: 10px;
-  // margin-left: 5px;
   width: 45px;
   height: 45px;
 }
@@ -137,13 +131,83 @@
 }
 
 .comment-delete {
-color: $darker-gray;
-&:hover {
-  color: $main-black;
-}
+  color: $darker-gray;
+  &:hover {
+    color: $main-black;
+  }
 }
 
 .delete-comment {
   margin-top: 5px;
   margin-right: 10px;
+}
+
+.far {
+  font-size: 2rem;
+  color: $darker-gray;
+}
+
+.bs-tooltip-auto[x-placement^="top"] .arrow::before,
+.bs-tooltip-top .arrow::before {
+  border-top-color: $darker-gray !important;
+  margin-bottom: 5px;
+}
+
+.bs-tooltip-auto[x-placement^="right"] .arrow::before,
+.bs-tooltip-right .arrow::before {
+  border-right-color: $darker-gray !important;
+}
+
+.upload-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.upload-icon {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+}
+.text-area {
+  border-radius: 20px;
+  overflow: hidden;
+  outline: none;
+  min-height: 20px !important;
+  padding-left: 15px;
+}
+::-webkit-input-placeholder {
+  padding-left: 20px;
+  vertical-align: center;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  padding-left: 20px;
+  line-height: 50px;
+  vertical-align: center;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  padding-left: 20px;
+  line-height: 50px;
+  vertical-align: center;
+}
+
+:-ms-input-placeholder {
+  padding-left: 20px;
+  line-height: 50px;
+  vertical-align: center;
+}
+
+.submit {
+  float: right;
+  border-radius: 10px;
+  color: $main-black;
+  background-color: $main-white;
+  font-family: $body-font;
+  margin-top: 5px;
+  &:hover {
+    border-color: $darker-gray;
+  }
 }
