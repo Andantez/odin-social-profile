@@ -38,6 +38,7 @@ gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'cloudinary', '~> 1.14'
 gem 'font-awesome-sass'
+gem 'pg_search', '~> 2.3', '>= 2.3.2'
 gem 'simple_form'
 
 group :development, :test do

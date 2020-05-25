@@ -3,6 +3,15 @@
     <span class="header">Social Profile</span>
     <%= image_tag 'logo.png', size: '35x35' %>
   <% end %>
+
+<nav class="navbar navbar-light bg-light">
+<%= form_with(url: "/users", method: "get",class:"form-inline", local: true) do |f| %>
+  <%#= f.label :query, "Search for:" %>
+  <%= f.text_field :query, class: "mr-sm-2 search-input", placeholder: "Search for friends" %>
+  <%= f.submit "Search", class: "my-2 my-sm-0 search-button" %>
+<% end %>
+</nav>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

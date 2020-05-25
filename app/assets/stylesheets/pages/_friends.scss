@@ -1,0 +1,36 @@
+.user {
+  font-size:2rem;
+  color: $main-black;
+  font-family: $headers-font;
+  &:hover {
+    color: $main-black;
+  }
+}
+
+.friendlist {
+  h3 {
+    font-weight: bold;
+    font-family: $headers-font;
+    font-size: 2rem;
+    padding-top: 0.75em;
+  }
+}
+
+.add-friend {
+  background-color: $main-gray;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  &:hover {
+    background-color: $dark-gray;
+  }
+}
+
+.friend-container {
+  max-width: 30%;
+}
+
+.search-q {
+  border-bottom: 2px solid $darker-gray;
+  margin-bottom: 1rem;
+}

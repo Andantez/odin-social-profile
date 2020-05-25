@@ -1,14 +1,84 @@
+    <% @user ||= current_user %>
 <%# TODO - Implement styling and move some of the code in partials %>
-<% @user ||= current_user %>
-<ol>
-<h3><%= @user.username %></h3>
-<% @user.posts.each do |post| %>
-  <li>
-  <%= post.content %>
-    <% post.comments.each do |comment| %><br/>
-      <%= comment.content %>
-    <% end %><br/>
-    Posted <%= time_ago_in_words(post.created_at) %> ago
-  </li>
-<% end %>
-</ol>
+<div class="container">
+<div class="row">
+  <div class="col-md-4"> 
+
+
+  <div class="border mt-5 friends-container">
+
+   <div class="d-flex justify-content-between">
+     <div>
+        <h4><%= link_to "Friends", friends_path %></h4>
+        <small> <%= pluralize(@user.friends.count, "friend") %></small>
+     </div>
+     <div><h4><%= link_to "See all", friends_path %></h4></div>
+   </div>
+    <div class="friend-avatars">
+    <% @user.friends.limit(9).shuffle.each do |friend| %>  
+    <% if friend.avatar.attached?  %>
+      <span>
+    <%= link_to friend do %>
+<%= cl_image_tag friend.avatar.key, height: 70, width: 70, crop: :fit, class: 'avatars'%>
+    <% end %>
+      <small><%= link_to friend.username, friend %></small></span>
+    <% else %>
+      <span>
+      <%= link_to friend do %>
+      <%= image_tag "http://via.placeholder.com/45", height: 70, width: 70, class: "avatars" %>
+      <% end %>
+       <small><%= link_to friend.username, friend %></small></span>
+    <% end %>
+    <% end %>
+    </div>
+  </div>
+
+
+
+
+
+
+  
+<%# <h3>hello</h3>
+<h3>Friends</h3> %>
+<%# @user.friends.each do |friend|  %>
+  <%#= friend.username %>
+  <%#= link_to friendship_path(@user.friendships.find_by(friend_id:friend).id,friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'delete', remote: true do %>
+    <%#= button_tag "Remove from friends", class: "btn btn-primary" %>
+  <%# end %>
+<%# end %>
+<%# <h3>Pending invitations</h3> %>
+<%# @user.pending_friends.each do |friend| %>
+  <%# <p>Invitations sent to: = friend.username %>
+    <%#= link_to cancel_friendships_path(pending_friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
+      <%#= button_tag "Cancel", class: 'btn btn-primary' %>
+    <%# end %>
+  <%# </p> %>
+<%# end %>
+<%# <h3>Requested invitations</h3> %>
+<%# @user.requested_friends.each do |friend| %>
+  <%# <p>Invitation send by: = friend.username %>
+    <%#= link_to accept_friendships_path(request_by_id: friend.id), method: 'patch', remote: true do  %>
+      <%#= button_tag "Accept", class: 'btn btn-primary' %>
+    <%# end %>
+    <%#= link_to decline_friendships_path(request_by_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
+      <%# = button_tag "Decline", class: 'btn btn-primary'</p> %>
+  <%# end %>
+<%# end %>
+
+
+
+
+
+
+
+
+
+
+  </div>
+    <div class="col-md-6">
+      
+    <%= render 'user_profile' %>
+  </div>
+</div>
+</div>

@@ -4,18 +4,19 @@
     <title>OdinSocialProfile</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%= favicon_link_tag %>
-
+    <%= favicon_link_tag %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-  </head>
-
-  <body>
-  <%= render 'shared/navbar' if user_signed_in? %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-</div>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
+    </head>
+    <body>
+      <%= render 'shared/navbar' if user_signed_in? %>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

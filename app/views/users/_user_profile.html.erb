@@ -1,0 +1,44 @@
+<% @user.posts.each do |post| %>
+  <ul class="list-unstyled main-ul">
+    <div class= "d-flex index-card">
+      <div>
+        <% if !post.user.facebook_picture_url.nil? || post.user.avatar.attached? %>
+          <% avatar_url = post.user.facebook_picture_url || post.user.avatar %>
+          <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+        <% else %>
+          <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
+        <% end %>
+      </div>
+      <div class="card-title">
+        <%= link_to post.user.username, user_path(post.user) , class: ""%>
+        <small class="small-info"><%= time_ago_in_words(post.created_at)%> ago.</small>
+      </div>
+      <% if current_user == post.user%>
+        <div class="index-post-dropdown">
+          <li class="nav-item dropdown">
+            <a class="nav-link navigation-links" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="fa-stack fa-1x more-first-icon">
+                <i class="fas fa-circle fa-stack-2x more-second-icon"></i>
+                <i class="fas fa-ellipsis-h fa-stack-1x fa-inverse more-third-icon "></i>
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right text-center dropdown-radius card-dropdown" aria-labelledby="navbarDropdownMenuLink">
+              <div class="index-dropdown-info">
+                <span ><%= link_to "Delete", post, method: :delete, remote: true %> </span>
+              </div>
+              <div class="index-dropdown-info"><span><%= link_to "Edit", edit_post_path(post) %></span></div>
+            </div>
+          </li>
+        </div>
+      <% end %>
+    </div>
+    <% if post.content.empty?  %>
+      <li class="text-center"> <%= cl_image_tag post.image.key, height: 500, crop: :fit, class: "card-image" if post.image.attached? %></li>
+    <% elsif !post.image.attached?%>
+      <li class="content"><%= post.content %></li>
+    <% else %>
+      <li class="content"><%= post.content %></li>
+      <li class="text-center"> <%= cl_image_tag post.image.key, height: 500, crop: :fit, class: "card-image" if post.image.attached? %></li>
+    <% end %>
+  </ul>
+<% end %>

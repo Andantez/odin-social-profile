@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_for_friends,
+                  against: %i[first_name last_name username],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

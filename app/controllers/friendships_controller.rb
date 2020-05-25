@@ -11,7 +11,7 @@ class FriendshipsController < ApplicationController
   def create
     Friendship.request(current_user, User.find(params[:user]))
     flash[:notice] = 'Friend request sent.'
-    redirect_to root_url
+    redirect_back(fallback_location: root_url)
   end
 
   def accept

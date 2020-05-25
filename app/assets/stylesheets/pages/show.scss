@@ -1,0 +1,14 @@
+.friend-avatars {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;  
+}
+
+.avatars {
+  width: 100px;
+  height: 100px;
+}
+
+.friends-container {
+  position: sticky;
+  top: 25%;
+}
