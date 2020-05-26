@@ -2,7 +2,17 @@
 <div class="commentss">
   <div class="comment-container d-flex">
   
-    <li>  <%= cl_image_tag comment.user.avatar.key, height: 45, width: 45,crop: :fit, class: "comment-avatar" if comment.user.avatar.attached? %>
+    <li>
+     <% if !comment.user.facebook_picture_url.nil? || comment.user.avatar.attached? %>
+        <% avatar_url = comment.user.facebook_picture_url || comment.user.avatar %>
+        <% if avatar_url == comment.user.facebook_picture_url %>
+        <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
+        <% else %>
+        <%= cl_image_tag comment.user.avatar.key, height: 45, width: 45,crop: :fit, class: "comment-avatar" if comment.user.avatar.attached? %>
+        <% end %>
+      <% else %>
+        <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
+      <% end %>
     </li>
     <li class="comment-info"><strong><%=comment.user.username %></strong> <br>
       <%= comment.content %>  </li>

@@ -1,0 +1,33 @@
+.post-container {
+  margin: auto;
+  width: 50%;
+  h3 {
+    text-align: center;
+  }
+}
+
+.post-form {
+  text-align: center;
+}
+
+.buttons {
+  margin: auto;
+  width: 500px;
+  justify-content: flex-start;
+  
+}
+
+.post-btn {
+  font-family: $headers-font;
+  border-radius: 5px;
+  background-color: $main-white;
+  border: 1px solid $darker-gray;
+  &:hover {
+    background-color: $dark-gray;
+  }
+}
+
+.upload {
+  font-size: 1.9rem;
+  margin-left: 20px;
+}

@@ -3,15 +3,13 @@
     <span class="header">Social Profile</span>
     <%= image_tag 'logo.png', size: '35x35' %>
   <% end %>
-
-<nav class="navbar navbar-light bg-light">
-<%= form_with(url: "/users", method: "get",class:"form-inline", local: true) do |f| %>
-  <%#= f.label :query, "Search for:" %>
-  <%= f.text_field :query, class: "mr-sm-2 search-input", placeholder: "Search for friends" %>
-  <%= f.submit "Search", class: "my-2 my-sm-0 search-button" %>
-<% end %>
-</nav>
-
+  <nav class="navbar navbar-light bg-light">
+    <%= form_with(url: "/users", method: "get",class:"form-inline", local: true) do |f| %>
+      <%#= f.label :query, "Search for:" %>
+      <%= f.text_field :query, class: "mr-sm-2 search-input", placeholder: "Search for friends" %>
+      <%= f.submit "Search", class: "my-2 my-sm-0 search-button" %>
+    <% end %>
+  </nav>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,7 +21,11 @@
           <% if !current_user.facebook_picture_url.nil? || current_user.avatar.attached? %>
             <% avatar_url = current_user.facebook_picture_url || current_user.avatar %>
             <span class="nav-link avatar-username">
-              <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+              <% if avatar_url == current_user.facebook_picture_url %>
+                <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
+              <% else %>
+                <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+              <% end %>
               <span class="username"> <%= current_user.username %></span>
             </span>
           <% else %>

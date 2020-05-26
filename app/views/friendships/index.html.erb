@@ -1,26 +1,84 @@
-<h3>hello</h3>
-<h3>Friends</h3>
-<% @user.friends.each do |friend|  %>
-  <%= friend.username %>
-  <%= link_to friendship_path(@user.friendships.find_by(friend_id:friend).id,friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'delete', remote: true do %>
-    <%= button_tag "Remove from friends", class: "btn btn-primary" %>
-  <% end %>
-<% end %>
-<h3>Pending invitations</h3>
-<% @user.pending_friends.each do |friend| %>
-  <p>Invitations sent to: <%= friend.username %>
-    <%= link_to cancel_friendships_path(pending_friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
-      <%= button_tag "Cancel", class: 'btn btn-primary' %>
-    <% end %>
-  </p>
-<% end %>
-<h3>Requested invitations</h3>
-<% @user.requested_friends.each do |friend| %>
-  <p>Invitation send by: <%= friend.username %>
-    <%= link_to accept_friendships_path(request_by_id: friend.id), method: 'patch', remote: true do  %>
-      <%= button_tag "Accept", class: 'btn btn-primary' %>
-    <% end %>
-    <%= link_to decline_friendships_path(request_by_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
-      <%= button_tag "Decline", class: 'btn btn-primary' %></p>
-  <% end %>
-<% end %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 friends-headers">
+      <div class="lol">
+        <h1><%= link_to "Friends", friends_path(friends: :friends) %></h1>
+        <h1><%= link_to "Pending requests", friends_path(pending: :pending) %></h1>
+        <h1><%= link_to "Friend Requests", friends_path(friend_requests: :friend_requests) %></h1>
+      
+      </div></div>
+    <div class="col-md-6">
+      <% if params[:friends] %>
+        <ul class="list-unstyled">
+          <% @user.friends.each do |friend|  %>
+            <li class="d-flex justify-content-between friend-list-cont">
+              <span>
+                <% if !friend.facebook_picture_url.nil? || friend.avatar.attached? %>
+                  <% avatar_url = friend.facebook_picture_url || friend.avatar %>
+                  <% if avatar_url == friend.facebook_picture_url %>
+                    <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
+                  <% else %>
+                    <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+                  <% end %>
+                <% else %>
+                  <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
+                <% end %>
+                <%= link_to friend.username, friend %>
+              </span>
+              <%= link_to friendship_path(@user.friendships.find_by(friend_id:friend).id,friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'delete', remote: true do %>
+                <%= button_tag "Remove", class: "btn btn-primary tesss" %>
+              </li>
+            <% end %>
+          <% end %>
+        <% elsif params[:pending] %>
+          <% @user.pending_friends.each do |friend| %>
+            <li class="d-flex justify-content-between friend-list-cont">
+              <span>
+                <% if !friend.facebook_picture_url.nil? || friend.avatar.attached? %>
+                  <% avatar_url = friend.facebook_picture_url || friend.avatar %>
+                  <% if avatar_url == friend.facebook_picture_url %>
+                    <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
+                  <% else %>
+                    <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+                  <% end %>
+                <% else %>
+                  <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
+                <% end %>
+                <%= link_to friend.username, friend %>
+              </span>
+              <%= link_to cancel_friendships_path(pending_friend_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
+                <%= button_tag "Cancel", class: 'btn btn-primary' %>
+              <% end %>
+            <% end %>
+          </li>
+        <% elsif params[:friend_requests] %>
+          <% @user.requested_friends.each do |friend| %>
+            <li class="d-flex justify-content-between friend-list-cont">
+              <span>
+                <% if !friend.facebook_picture_url.nil? || friend.avatar.attached? %>
+                  <% avatar_url = friend.facebook_picture_url || friend.avatar %>
+                  <% if avatar_url == friend.facebook_picture_url %>
+                    <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
+                  <% else %>
+                    <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+                  <% end %>
+                <% else %>
+                  <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
+                <% end %>
+                <%= link_to friend.username, friend %>
+              </span>
+              <span>
+                <%= link_to accept_friendships_path(request_by_id: friend.id), method: 'patch', remote: true do  %>
+                  <%= button_tag "Accept", class: 'btn btn-primary' %>
+                <% end %>
+                <%= link_to decline_friendships_path(request_by_id: friend.id),data: {confirm: 'Are you sure?'}, method: 'patch', remote: true do %>
+                  <%= button_tag "Decline", class: 'btn btn-primary' %>
+                <% end %>
+              <% end %>
+            </span>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

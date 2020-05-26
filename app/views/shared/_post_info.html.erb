@@ -2,7 +2,11 @@
   <div>
     <% if !post.user.facebook_picture_url.nil? || post.user.avatar.attached? %>
       <% avatar_url = post.user.facebook_picture_url || post.user.avatar %>
-      <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+       <% if avatar_url == post.user.facebook_picture_url %>
+        <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
+        <% else %>
+        <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
+        <% end %>
     <% else %>
       <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
     <% end %>
