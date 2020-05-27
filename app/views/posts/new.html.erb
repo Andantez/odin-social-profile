@@ -11,13 +11,15 @@
         <% end %>
         <%= f.text_area :content, placeholder: "What's on your mind, #{current_user.username} ?",
                size: "50x5",class: "post-input" %>
-        <%= f.submit "Post", class: "post-btn" %>
-        <label>
-          <i class="far fa-image tooltip-top upload" data-toggle="tooltip" data-title="Upload a photo" data-placement="top" data-trigger="hover" data-original-title title ></i>
-          <span style="display:none;">
-            <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image'%>
-          </span>
-        </label>
+       <p>
+          <%= f.submit "Post", class: "post-btn" %>
+          <label>
+            <i class="far fa-image tooltip-top upload" data-toggle="tooltip" data-title="Upload a photo" data-placement="top" data-trigger="hover" data-original-title title ></i>
+            <span style="display:none;">
+              <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image'%>
+            </span>
+          </label>
+       </p>
       <% end %>
     </div>
   </div>
