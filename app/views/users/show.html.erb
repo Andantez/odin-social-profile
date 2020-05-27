@@ -21,7 +21,7 @@
                     <% if avatar_url == friend.facebook_picture_url %>
                       <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
                     <% else %>
-                      <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "avatars"%>
+                      <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
                     <% end %>
                   <% end %>
                 <% end %>
