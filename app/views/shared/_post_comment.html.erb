@@ -14,7 +14,7 @@
         <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
       <% end %>
     </li>
-    <li class="comment-info"><strong><%=comment.user.username %></strong> <br>
+    <li class="comment-info"><strong><%=link_to comment.user.username, comment.user, class:"comment-users" %></strong> <br>
       <%= comment.content %>  </li>
       <div class="delete-comment">
   <% if current_user == comment.user %>

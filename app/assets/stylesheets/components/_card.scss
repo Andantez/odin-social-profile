@@ -211,3 +211,11 @@
     border-color: $darker-gray;
   }
 }
+
+.comment-users {
+  color: $main-black;
+  font-weight: bold;
+  &:hover {
+    color: $darker-gray;
+  }
+}

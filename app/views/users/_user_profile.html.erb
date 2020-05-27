@@ -1,3 +1,14 @@
+<div class="m-5">
+  <h1 class="text-center mt-5"><%= @user.username %></h1>
+   <div class="friend-invite text-center">
+           <% unless (current_user == @user) || current_user.friends?(@user)  %>
+            <%= form_with(model: current_user.friendships.new, local: true) do |f| %>
+              <%= hidden_field_tag :user, @user.id%>
+              <%= f.submit "Add Friend", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+         </div>
+</div>
 <% @user.posts.each do |post| %>
   <ul class="list-unstyled main-ul">
     <div class= "d-flex index-card">
@@ -14,6 +25,7 @@
       <div class="card-title">
         <%= link_to post.user.username, user_path(post.user) , class: ""%>
         <small class="small-info"><%= time_ago_in_words(post.created_at)%> ago.</small>
+     
       </div>
       <% if current_user == post.user%>
         <div class="index-post-dropdown">
