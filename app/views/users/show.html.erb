@@ -16,7 +16,14 @@
             <% if friend.avatar.attached?  %>
               <span>
                 <%= link_to friend do %>
-                  <%= cl_image_tag friend.avatar.key, height: 70, width: 70, crop: :fit, class: 'avatars'%>
+                  <% if !friend.facebook_picture_url.nil? || friend.avatar.attached? %>
+                    <% avatar_url = friend.facebook_picture_url || friend.avatar %>
+                    <% if avatar_url == friend.facebook_picture_url %>
+                      <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
+                    <% else %>
+                      <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "avatars"%>
+                    <% end %>
+                  <% end %>
                 <% end %>
                 <small><%= link_to friend.username, friend %></small></span>
             <% else %>

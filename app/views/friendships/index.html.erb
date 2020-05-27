@@ -7,7 +7,7 @@
         <h1><%= link_to "Friend Requests", friends_path(friend_requests: :friend_requests) %></h1>
       
       </div></div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-5">
       <% if params[:friends] %>
         <ul class="list-unstyled">
           <% @user.friends.each do |friend|  %>
