@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: redirect('/users/sign_in')
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :users, only: %i[show index]
-  resources :posts do
+  resources :posts, except: :show do
     resources :comments, only: :create
   end
   resources :comments, only: :destroy

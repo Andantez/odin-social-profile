@@ -9,5 +9,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(:friendships, posts: [:comments]).find(params[:id])
+    @comment = Comment.new
   end
 end

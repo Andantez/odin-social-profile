@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_params, only: %i[show edit update destroy]
+  before_action :set_params, only: %i[edit update destroy]
 
   def index
     # Get the friend ids of the current_user and display the friends posts
@@ -13,9 +13,9 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
 
-  def show
-    @comment = Comment.new
-  end
+  # def show
+  #   @comment = Comment.new
+  # end
 
   def new
     @post = Post.new
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     if @post.save
       flash[:notice] = 'Post created'
-      redirect_to @post
+      redirect_to root_url
     else
       flash.now[:alert] = 'Something went wrong, please try again'
       render :new

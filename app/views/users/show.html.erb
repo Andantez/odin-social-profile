@@ -19,7 +19,7 @@
                   <% if !friend.facebook_picture_url.nil? || friend.avatar.attached? %>
                     <% avatar_url = friend.facebook_picture_url || friend.avatar %>
                     <% if avatar_url == friend.facebook_picture_url %>
-                      <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
+                      <%= image_tag avatar_url, height: 45, width: 45, class: "nav-bar"%>
                     <% else %>
                       <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
                     <% end %>
@@ -39,6 +39,7 @@
     </div>
     <div class="col-md-6">
       <%= render 'user_profile' %>
+    
     </div>
   </div>
 </div>

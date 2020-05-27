@@ -5,9 +5,9 @@
         <% if !post.user.facebook_picture_url.nil? || post.user.avatar.attached? %>
           <% avatar_url = post.user.facebook_picture_url || post.user.avatar %>
           <% if avatar_url == post.user.facebook_picture_url %>
-            <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
+            <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
           <% else %>
-            <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
+            <%= image_tag avatar_url, height: 45, width: 45, class: "navbar-img"%>
           <% end %>
         <% end %>
       </div>
@@ -42,5 +42,42 @@
       <li class="content"><%= post.content %></li>
       <li class="text-center"> <%= cl_image_tag post.image.key, height: 500, crop: :fit, class: "card-image" if post.image.attached? %></li>
     <% end %>
+   
+   
+
+
+<% post.comments.each do |comment| %>
+            <%= render 'shared/post_comment', comment: comment %>
+          <% end %>
+
+
+
+
+
+
+   
+   
+   
+   
+    <li class="mt-2">
+      <%= form_with(model: [post, @comment]) do |f| %>
+        <% if @comment.errors.any? %>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <%= msg %>
+          <% end %>
+        <% end %>
+        <div class="upload-container"> <%= f.text_area :content, placeholder: 'Write a comment...', style: 'width:100%;', size:"1x1", class: "text-area"%>
+          <%= f.submit "Comment", class: "submit" %>
+          <div>
+            <label>
+              <i class="far fa-image tooltip-top upload-icon" data-toggle="tooltip" data-title="Upload a photo" data-placement="top" data-trigger="hover" data-original-title title ></i>
+              <span style="display:none;">
+                <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", id: 'validate_image'%>
+              </span>
+            </label>
+          </div>
+        </div>
+      <% end %>
+    </li>
   </ul>
 <% end %>
