@@ -4,9 +4,11 @@
       <div>
         <% if !post.user.facebook_picture_url.nil? || post.user.avatar.attached? %>
           <% avatar_url = post.user.facebook_picture_url || post.user.avatar %>
-          <%= cl_image_tag avatar_url.key, height: 45, width: 45, class: "navbar-img"%>
-        <% else %>
-          <%= image_tag "http://via.placeholder.com/45", class: "navbar-img index-img" %>
+          <% if avatar_url == post.user.facebook_picture_url %>
+            <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
+          <% else %>
+            <%= image_tag avatar_url, height: 45, width: 45, class: "avatars"%>
+          <% end %>
         <% end %>
       </div>
       <div class="card-title">
