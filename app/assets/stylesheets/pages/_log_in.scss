@@ -1,0 +1,62 @@
+.log-in-header {
+  font-family: $headers-font;
+  font-size: 5rem;
+  // background-color: #fff;   
+  color: $main-black;
+  text-shadow:
+    0 1px $dark-gray,
+    1px 0 $light-gray,
+    1px -2px $dark-gray,
+    2px -1px $light-gray,
+    2px -3px $dark-gray,
+    3px -2px $light-gray,
+    3px -4px $dark-gray,
+    4px -3px $light-gray,
+    4px -5px $dark-gray,
+    5px -4px $light-gray,
+    5px -6px $dark-gray,
+    6px -5px $light-gray,
+    6px -7px $dark-gray,
+    7px -6px $light-gray,
+    7px -8px $dark-gray,
+    8px -7px $light-gray;
+}
+
+.log-in-cont {
+  margin-top: 10%;
+}
+
+.form-cont {
+  margin-top: 10%;
+  border: 2px solid $darker-gray;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 10px -10px $darker-gray;
+}
+
+.label {
+  font-family: $body-font;
+  letter-spacing: 1px;
+}
+
+.input {
+  &:focus {
+    color: $darker-gray !important;
+    border-color: $darker-gray;
+    box-shadow:none !important;
+  }
+}
+
+.log-in-btn {
+  font-family: $body-font;
+  color: $main-black;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form-cont {
+  a {
+    color: $main-black;
+  }
+}
