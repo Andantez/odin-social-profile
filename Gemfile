@@ -50,7 +50,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'better_errors', '~> 2.7'
+  gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'pry-rails'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

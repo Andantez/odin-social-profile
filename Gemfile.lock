@@ -64,7 +64,7 @@ GEM
       execjs
     aws_cf_signer (0.1.3)
     bcrypt (3.1.13)
-    better_errors (2.7.0)
+    better_errors (2.8.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
@@ -87,7 +87,7 @@ GEM
     cloudinary (1.14.0)
       aws_cf_signer
       rest-client
-    coderay (1.1.2)
+    coderay (1.1.3)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
@@ -103,7 +103,7 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    erubi (1.9.0)
+    erubi (1.10.0)
     execjs (2.7.0)
     faker (2.11.0)
       i18n (>= 1.6, < 2)
@@ -312,7 +312,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations (= 0.8.2)
   autoprefixer-rails
-  better_errors (~> 2.7)
+  better_errors (~> 2.8)
   binding_of_caller (~> 0.8.0)
   bootsnap (>= 1.4.2)
   byebug
