@@ -31,7 +31,7 @@ gem 'active_storage_validations', '0.8.2'
 gem 'sendgrid-ruby'
 # Use Active Storage variant
 gem 'devise'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'autoprefixer-rails'
